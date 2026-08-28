@@ -1,7 +1,9 @@
 package com.example.lab4
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,5 +21,17 @@ class MainActivity2 : AppCompatActivity() {
             Toast.makeText(this, "key1:"+ data, Toast.LENGTH_SHORT).show()
             Toast.makeText(this, "key2:"+ data2, Toast.LENGTH_SHORT).show()
         }
+
+        val btn_back = findViewById<Button>(R.id.btn_back)
+        btn_back.setOnClickListener {
+            val bun= Bundle()
+            bun.putString("key2", "cde")
+            val i = Intent().putExtras(bun)
+            setResult(RESULT_OK, i)
+            finish()
+        }
+
+
+
     }
 }

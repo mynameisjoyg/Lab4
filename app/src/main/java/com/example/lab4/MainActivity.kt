@@ -1,8 +1,11 @@
 package com.example.lab4
 
+import android.app.Activity
+import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,6 +28,20 @@ class MainActivity : ComponentActivity() {
         bun.putInt("key1", 123)
         bun.putString("key2", "abc")
         toAct2Intent.putExtras(bun)
-        startActivity(toAct2Intent)
+        startActivityForResult(toAct2Intent, 1)
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+        caller: ComponentCaller
+    ) {
+        super.onActivityResult(requestCode, resultCode, data, caller)
+        data?.extras?.let{
+            if(requestCode==1 && resultCode== Activity.RESULT_OK){
+                Toast.makeText(this, "onActivityResult, key2:"+ it.getString("key2"), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
