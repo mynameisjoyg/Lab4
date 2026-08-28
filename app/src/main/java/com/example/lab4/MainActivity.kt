@@ -21,7 +21,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
         val toAct2Intent = Intent(this, MainActivity2::class.java)
-        toAct2Intent.putExtra("key", 123)
+        val bun =  Bundle()
+        bun.putInt("key1", 123)
+        bun.putString("key2", "abc")
+        toAct2Intent.putExtras(bun)
         startActivity(toAct2Intent)
     }
 }
